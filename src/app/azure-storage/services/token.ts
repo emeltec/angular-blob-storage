@@ -17,6 +17,5 @@ export function azureBlobStorageFactory(): BlobStorageClientFactory {
     );
   };
 
-  return options =>
-    BlobServiceClient.fromConnectionString(buildConnectionString(options));
+  return options => BlobServiceClient.fromConnectionString(buildConnectionString(options))
 }

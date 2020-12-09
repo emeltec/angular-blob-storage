@@ -15,8 +15,8 @@ import { BlobSharedViewStateService } from '../services/blob-shared-view-state.s
         <span>{{ item.properties.contentLength }}</span>
         <span>{{ item.properties.lastModified | date: 'short' }}</span>
         <div>
-          <button (click)="onDownloadClick(item.name)">Download</button>
-          <button (click)="onDeleteClick(item.name)">Delete</button>
+          <button class="btn btn-success btn-sm" (click)="onDownloadClick(item.name)">Descargar</button>
+          <button class="btn btn-danger btn-sm" (click)="onDeleteClick(item.name)">Eliminar</button>
         </div>
       </div>
     </ng-container>

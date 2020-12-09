@@ -5,7 +5,7 @@ import { BlobSharedViewStateService } from '../services/blob-shared-view-state.s
   selector: 'app-selected-container',
   template: `
     <ng-container *ngIf="selectedContainer$ | async as containerName">
-      <h2>Container Files: {{ containerName }}</h2>
+      <h2>Archivos: {{ containerName }}</h2>
 
       <ng-content></ng-content>
     </ng-container>

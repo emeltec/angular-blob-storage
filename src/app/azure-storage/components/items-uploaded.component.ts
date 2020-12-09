@@ -12,5 +12,7 @@ import { BlobUploadsViewStateService } from '../services/blob-uploads-view-state
 })
 export class ItemsUploadedComponent {
   uploads$ = this.blobState.uploadedItems$;
-  constructor(private blobState: BlobUploadsViewStateService) {}
+  constructor(
+    private blobState: BlobUploadsViewStateService
+    ) {}
 }

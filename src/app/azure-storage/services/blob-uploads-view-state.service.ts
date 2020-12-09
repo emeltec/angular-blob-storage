@@ -9,6 +9,7 @@ import { BlobStorageService } from './blob-storage.service';
   providedIn: 'root'
 })
 export class BlobUploadsViewStateService {
+  
   private uploadQueueInner$ = new Subject<FileList>();
 
   uploadedItems$ = this.uploadQueue$.pipe(

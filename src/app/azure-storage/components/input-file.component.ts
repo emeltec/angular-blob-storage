@@ -11,15 +11,16 @@ import { BlobUploadsViewStateService } from '../services/blob-uploads-view-state
       multiple="multiple"
       (change)="onSelected($event.target.files)"
     />
-    <button (click)="showFileDialog()">Click here to Upload File</button>
+    <button class="btn btn-info btn-sm" (click)="showFileDialog()">Click para cargar archivos</button>
   `
 })
 export class InputFileComponent {
-  @ViewChild('fileInput', { static: false }) fileInput: ElementRef<
-    HTMLInputElement
-  >;
 
-  constructor(private blobState: BlobUploadsViewStateService) {}
+  @ViewChild('fileInput', { static: false }) fileInput: ElementRef<HTMLInputElement>;
+
+  constructor(
+    private blobState: BlobUploadsViewStateService
+  ) {}
 
   onSelected(files: FileList): void {
     this.blobState.uploadItems(files);

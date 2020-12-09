@@ -43,6 +43,7 @@ export class BlobStorageService {
 
   uploadToBlobStorage(file: File, request: BlobFileRequest) {
     const blockBlobClient = this.getBlockBlobClient(request);
+    console.log(blockBlobClient)
     return this.uploadFile(blockBlobClient, file);
   }
 

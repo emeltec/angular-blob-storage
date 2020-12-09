@@ -4,8 +4,9 @@ import { Component } from '@angular/core';
   selector: 'app-header',
   template: `
     <div>
-      <h1 style="text-align: center">stottle-angular-blob-storage</h1>
-      <div>
+      <h1 style="text-align: center">Blob Storage</h1>
+
+      <!-- <div>
         Medium Article:
         <a
           href="https://medium.com/@stuarttottle/upload-to-azure-blob-storage-with-angular-8-2ed80dfc6672"
@@ -24,7 +25,8 @@ import { Component } from '@angular/core';
         >
           stottle-angular-blob-storage
         </a>
-      </div>
+      </div> -->
+
     </div>
   `
 })
