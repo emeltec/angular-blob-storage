@@ -8,7 +8,8 @@ import { BlobStorageRequest } from '../types/azure-storage';
   providedIn: 'root'
 })
 export class SasGeneratorService {
-  constructor(private http: HttpClient) {}
+
+  constructor( private http: HttpClient ) {}
 
   getSasToken(): Observable<BlobStorageRequest> {
     return this.http.get<BlobStorageRequest>(

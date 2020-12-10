@@ -1,0 +1,28 @@
+
+
+<ng-container *ngIf="items$ | async as items">
+  <ng-container *ngIf="items.length === 0">
+    No Items - Try uploading some files
+  </ng-container>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Tamaño</th>
+        <th scope="col">Fecha</th>
+        <th colspan="2" scope="col">Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of items">
+        <td>{{ item.name }}</td>
+        <td>{{ item.properties.contentLength }}</td>
+        <td>{{ item.properties.lastModified | date: 'short' }}</td>
+        <td><button class="btn btn-success btn-sm" (click)="onDownloadClick(item.name)">Descargar</button></td>
+        <td><button class="btn btn-danger btn-sm" (click)="onDeleteClick(item.name)">Borrar</button></td>
+      </tr>
+    </tbody>
+  </table>
+  
+</ng-container>

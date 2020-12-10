@@ -5,22 +5,7 @@ import { BlobSharedViewStateService } from '../services/blob-shared-view-state.s
 
 @Component({
   selector: 'app-items-list',
-  template: `
-    <ng-container *ngIf="items$ | async as items">
-      <ng-container *ngIf="items.length === 0">
-        No Items - Try uploading some files
-      </ng-container>
-      <div *ngFor="let item of items">
-        <span>{{ item.name }}</span>
-        <span>{{ item.properties.contentLength }}</span>
-        <span>{{ item.properties.lastModified | date: 'short' }}</span>
-        <div>
-          <button class="btn btn-success btn-sm" (click)="onDownloadClick(item.name)">Descargar</button>
-          <button class="btn btn-danger btn-sm" (click)="onDeleteClick(item.name)">Eliminar</button>
-        </div>
-      </div>
-    </ng-container>
-  `
+  templateUrl: 'items-list.component.html'
 })
 export class ItemsListComponent {
   items$ = this.blobState.itemsInContainer$;

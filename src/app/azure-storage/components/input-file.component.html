@@ -1,0 +1,11 @@
+<div>
+
+  <input style="display: none" type="file" 
+    #fileInput multiple="multiple" 
+    (change)="onSelected($event.target.files)" />
+
+  <button class="btn btn-secondary" (click)="showFileDialog()">
+    Cargar archivos
+  </button>
+
+</div>

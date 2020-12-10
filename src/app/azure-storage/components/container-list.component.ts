@@ -3,19 +3,15 @@ import { BlobSharedViewStateService } from '../services/blob-shared-view-state.s
 
 @Component({
   selector: 'app-container-list',
-  template: `
-    <h3>Contenedores:</h3>
-    <div *ngFor="let container of containers$ | async">
-      {{ container.name }}
-      <button class="btn btn-success btn-sm" 
-      (click)="onClick(container.name)">Ver archivos</button>
-    </div>
-  `
+  templateUrl: 'container-list.component.html'
 })
 export class ContainerListComponent {
+  
   containers$ = this.blobState.containers$;
 
-  constructor(private blobState: BlobSharedViewStateService) {}
+  constructor(
+    private blobState: BlobSharedViewStateService
+    ) {}
 
   onClick(containerName: string): void {
     this.blobState.getContainerItems(containerName);

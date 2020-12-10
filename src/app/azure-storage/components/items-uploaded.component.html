@@ -1,0 +1,5 @@
+<h4>Carga de archivos:</h4>
+
+<ng-container *ngFor="let upload of uploads$ | async">
+  <pre>{{ upload | json }}</pre>
+</ng-container>

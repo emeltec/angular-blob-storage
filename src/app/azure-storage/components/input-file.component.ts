@@ -3,16 +3,7 @@ import { BlobUploadsViewStateService } from '../services/blob-uploads-view-state
 
 @Component({
   selector: 'app-input-file',
-  template: `
-    <input
-      style="display: none"
-      type="file"
-      #fileInput
-      multiple="multiple"
-      (change)="onSelected($event.target.files)"
-    />
-    <button class="btn btn-info btn-sm" (click)="showFileDialog()">Click para cargar archivos</button>
-  `
+  templateUrl: 'input-file.component.html'
 })
 export class InputFileComponent {
 

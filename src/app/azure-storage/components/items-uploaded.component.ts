@@ -3,16 +3,15 @@ import { BlobUploadsViewStateService } from '../services/blob-uploads-view-state
 
 @Component({
   selector: 'app-items-uploaded',
-  template: `
-    <h3>Uploads</h3>
-    <ng-container *ngFor="let upload of uploads$ | async">
-      <pre>{{ upload | json }}</pre>
-    </ng-container>
-  `
+  templateUrl: 'items-uploaded.component.html'
 })
 export class ItemsUploadedComponent {
+
   uploads$ = this.blobState.uploadedItems$;
+
   constructor(
     private blobState: BlobUploadsViewStateService
     ) {}
+
+    
 }

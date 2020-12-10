@@ -1,0 +1,5 @@
+<ng-container *ngIf="selectedContainer$ | async as containerName">
+  <h2>Contenedor: {{ containerName }}</h2>
+
+  <ng-content></ng-content>
+</ng-container>
