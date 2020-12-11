@@ -43,7 +43,7 @@ export class BlobStorageService {
 
   uploadToBlobStorage(file: File, request: BlobFileRequest) {
     const blockBlobClient = this.getBlockBlobClient(request);
-    console.log(blockBlobClient)
+    //console.log("archivo que sube",blockBlobClient)
     return this.uploadFile(blockBlobClient, file);
   }
 

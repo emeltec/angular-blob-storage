@@ -13,7 +13,10 @@ export class BlobSharedViewStateService {
   private selectedContainerInner$ = new BehaviorSubject<string>(undefined);
 
   containers$ = this.getStorageOptions().pipe(
-    switchMap((options) => this.blobStorage.getContainers(options))
+    switchMap((options) => {
+      //console.log("MM",options)
+      return this.blobStorage.getContainers(options)
+    })
   );
   
   itemsInContainer$ = this.selectedContainer$.pipe(
@@ -72,14 +75,14 @@ export class BlobSharedViewStateService {
   getStorageOptionsWithContainer(): Observable<BlobContainerRequest> {
     return this.getStorageOptions().pipe(
       withLatestFrom(this.selectedContainer$),
-      map(([options, containerName]) => ({ ...options, containerName }))
+      map(([options, containerName]) => {
+        //console.log("XX", options, containerName)
+        return ({ ...options, containerName })
+      } )
     );
   }
 
   private getStorageOptions(): Observable<BlobStorageRequest> {
-    this.sasGenerator.getSasToken().subscribe((r) => {
-      console.log(r);
-    });
     return this.sasGenerator.getSasToken();
   }
 }
