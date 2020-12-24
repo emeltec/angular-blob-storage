@@ -9,7 +9,8 @@ import { BlobStorageService } from './blob-storage.service';
   providedIn: 'root'
 })
 export class BlobUploadsViewStateService {
-  
+
+  carpeta = "archivos"
   private uploadQueueInner$ = new Subject<FileList>();
 
   uploadedItems$ = this.uploadQueue$.pipe(
@@ -31,7 +32,6 @@ export class BlobUploadsViewStateService {
   uploadItems(files: FileList): void {
     this.uploadQueueInner$.next(files);
   }
-
   private uploadFile = (file: File) =>
     this.blobState.getStorageOptionsWithContainer().pipe(
       switchMap(options =>

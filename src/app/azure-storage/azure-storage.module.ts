@@ -1,6 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BlobServiceClient } from '@azure/storage-blob';
 import { ContainerListComponent } from './components/container-list.component';
 import { InputFileComponent } from './components/input-file.component';
 import { ItemsDeletedComponent } from './components/items-deleted.component';
@@ -25,7 +26,7 @@ import { azureBlobStorageFactory, BLOB_STORAGE_TOKEN } from './services/token';
     {
       provide: BLOB_STORAGE_TOKEN,
       useFactory: azureBlobStorageFactory
-    }
+    },
   ],
   exports: [
     ContainerListComponent,

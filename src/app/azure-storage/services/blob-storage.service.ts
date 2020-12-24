@@ -1,7 +1,8 @@
 import { Inject, Injectable } from "@angular/core";
 import { TransferProgressEvent } from "@azure/core-http";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import { BlockBlobClient } from "@azure/storage-blob";
+import { BlobServiceClient, BlockBlobClient} from "@azure/storage-blob";
+import { StorageSharedKeyCredential } from "@azure/storage-blob";
 import { from, Observable, Subscriber } from "rxjs";
 import { distinctUntilChanged, scan, startWith } from "rxjs/operators";
 import {
@@ -16,13 +17,14 @@ import { BLOB_STORAGE_TOKEN } from "./token";
   providedIn: "root"
 })
 export class BlobStorageService {
+
   constructor(
     @Inject(BLOB_STORAGE_TOKEN)
     private getBlobClient: BlobStorageClientFactory
   ) {}
 
   getContainers(request: BlobStorageRequest) {
-    const blobServiceClient = this.buildClient(request);
+    const blobServiceClient = this.getBlobClient(request);
     return this.asyncToObservable(blobServiceClient.listContainers());
   }
 
@@ -43,25 +45,29 @@ export class BlobStorageService {
 
   uploadToBlobStorage(file: File, request: BlobFileRequest) {
     const blockBlobClient = this.getBlockBlobClient(request);
-    //console.log("archivo que sube",blockBlobClient)
+    console.log("archivo que sube",blockBlobClient, file)
     return this.uploadFile(blockBlobClient, file);
   }
 
   private getBlockBlobClient(request: BlobFileRequest) {
+    console.log("AAAA",request)
     const containerClient = this.getContainerClient(request);
     return containerClient.getBlockBlobClient(request.filename);
   }
 
   private getContainerClient(request: BlobContainerRequest) {
-    const blobServiceClient = this.buildClient(request);
+    console.log("CCCC",request)
+    const blobServiceClient = this.getBlobClient(request);
     return blobServiceClient.getContainerClient(request.containerName);
   }
 
-  private buildClient(options: BlobStorageRequest) {
+  /* private buildClient(options: BlobStorageRequest) {
+    console.log("aa",options)
     return this.getBlobClient(options);
-  }
+  } */
 
   private uploadFile(blockBlobClient: BlockBlobClient, file: File) {
+    console.log("NNNN",blockBlobClient)
     return new Observable<number>(observer => {
       blockBlobClient
         .uploadBrowserData(file, {

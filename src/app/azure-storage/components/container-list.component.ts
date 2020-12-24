@@ -6,14 +6,21 @@ import { BlobSharedViewStateService } from '../services/blob-shared-view-state.s
   templateUrl: 'container-list.component.html'
 })
 export class ContainerListComponent {
+
+  casillaCliente = "rawdata";
   
   containers$ = this.blobState.containers$;
 
   constructor(
-    private blobState: BlobSharedViewStateService
+    private blobState: BlobSharedViewStateService,
     ) {}
 
+    ngOnInit(){
+      //console.log(this.blobServiceClient.accountName)
+      this.blobState.getContainerItems(this.casillaCliente);
+    }
+
   onClick(containerName: string): void {
-    this.blobState.getContainerItems(containerName);
+    
   }
 }

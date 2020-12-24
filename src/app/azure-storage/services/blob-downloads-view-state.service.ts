@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { BlobDownloadResponseModel } from '@azure/storage-blob';
+import { BlobDownloadResponseModel, BlobServiceClient } from '@azure/storage-blob';
 import { from, OperatorFunction, Subject } from 'rxjs';
 import { map, mergeMap, startWith, switchMap } from 'rxjs/operators';
 import { BlobContainerRequest, BlobItemDownload } from '../types/azure-storage';
@@ -25,7 +25,7 @@ export class BlobDownloadsViewStateService {
   constructor(
     private blobStorage: BlobStorageService,
     private blobState: BlobSharedViewStateService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
   ) {}
 
   downloadItem(filename: string): void {

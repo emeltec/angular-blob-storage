@@ -14,20 +14,22 @@ export class BlobSharedViewStateService {
 
   containers$ = this.getStorageOptions().pipe(
     switchMap((options) => {
-      //console.log("MM",options)
       return this.blobStorage.getContainers(options)
     })
   );
   
   itemsInContainer$ = this.selectedContainer$.pipe(
-    filter((containerName) => !!containerName),
+    filter((containerName) => {console.log("ZZ",!!containerName); return !!containerName}),
     switchMap((containerName) =>
       this.getStorageOptions().pipe(
-        switchMap((options) =>
-          this.blobStorage.listBlobsInContainer({
+        switchMap((options) => {
+          console.log("KK",options)
+          return this.blobStorage.listBlobsInContainer({
             ...options,
             containerName,
           })
+        }
+          
         )
       )
     )
@@ -76,7 +78,7 @@ export class BlobSharedViewStateService {
     return this.getStorageOptions().pipe(
       withLatestFrom(this.selectedContainer$),
       map(([options, containerName]) => {
-        //console.log("XX", options, containerName)
+        console.log("XX", options, containerName)
         return ({ ...options, containerName })
       } )
     );
