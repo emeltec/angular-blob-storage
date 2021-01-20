@@ -1,5 +1,18 @@
 <h4>Carga de archivos:</h4>
 
-<ng-container *ngFor="let upload of uploads$ | async">
-  <pre>{{ upload | json }}</pre>
+<ng-container *ngFor="let upload of filesUploads">
+  
+  <div class="card mb-3" [ngStyle]="{'background': upload.progress == 100 ? '#e5f1d9' : '#fff'}">
+    <div class="card-body">
+      <div class="d-flex align-items-center">
+        <div>
+          <strong>{{ upload.filename }}</strong>
+          <div *ngIf="upload.progress != 100">(Subiendo archivo: {{ upload.progress }}%)</div>
+          <div *ngIf="upload.progress == 100">Archivo importado</div>
+        </div>
+        <div *ngIf="upload.progress != 100" class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+      </div>
+    </div>
+  </div>
+  
 </ng-container>

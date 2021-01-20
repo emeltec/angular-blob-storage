@@ -14,6 +14,7 @@ export class InputFileComponent {
   ) {}
 
   onSelected(files: FileList): void {
+    console.log(files)
     this.blobState.uploadItems(files);
     this.fileInput.nativeElement.value = '';
   }

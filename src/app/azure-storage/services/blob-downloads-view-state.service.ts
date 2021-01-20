@@ -47,10 +47,8 @@ export class BlobDownloadsViewStateService {
       )
     );
 
-  private mapDownloadResponse = (
-    filename: string,
-    options: BlobContainerRequest
-  ): OperatorFunction<string, BlobItemDownload> => source =>
+  private mapDownloadResponse = (filename: string, options: BlobContainerRequest): OperatorFunction<string, BlobItemDownload> => 
+  source =>
     source.pipe(
       map(url => ({
         filename,
@@ -64,10 +62,7 @@ export class BlobDownloadsViewStateService {
       })
     );
 
-  private getDownloadUrlFromResponse = (): OperatorFunction<
-    BlobDownloadResponseModel,
-    string
-  > => source =>
+  private getDownloadUrlFromResponse = (): OperatorFunction<BlobDownloadResponseModel, string> => source =>
     source.pipe(
       switchMap(res =>
         from(res.blobBody).pipe(
@@ -76,4 +71,5 @@ export class BlobDownloadsViewStateService {
         )
       )
     );
+
 }

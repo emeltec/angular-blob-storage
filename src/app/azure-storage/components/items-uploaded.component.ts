@@ -8,10 +8,19 @@ import { BlobUploadsViewStateService } from '../services/blob-uploads-view-state
 export class ItemsUploadedComponent {
 
   uploads$ = this.blobState.uploadedItems$;
+  filesUploads = [];
 
   constructor(
     private blobState: BlobUploadsViewStateService
     ) {}
+
+    ngOnInit(){
+      this.blobState.uploadedItems$.subscribe( res => {
+        this.filesUploads = res
+        console.log(this.filesUploads);
+        
+      })
+    }
 
     
 }

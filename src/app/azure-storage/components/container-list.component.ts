@@ -7,13 +7,14 @@ import { BlobSharedViewStateService } from '../services/blob-shared-view-state.s
 })
 export class ContainerListComponent {
   
-  containers$ = this.blobState.containers$;
+  //containers$ = this.blobState.containers$;
+  casillaCliente = "azure-webjobs-secrets/fncteu2srecd02";
 
   constructor(
     private blobState: BlobSharedViewStateService
     ) {}
 
-  onClick(containerName: string): void {
-    this.blobState.getContainerItems(containerName);
+  onClick(): void {
+    this.blobState.getContainerItems(this.casillaCliente);
   }
 }
