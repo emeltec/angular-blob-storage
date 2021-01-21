@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { first, take } from 'rxjs/operators';
 import { BlobUploadsViewStateService } from '../services/blob-uploads-view-state.service';
 
 @Component({
@@ -15,10 +16,9 @@ export class ItemsUploadedComponent {
     ) {}
 
     ngOnInit(){
-      this.blobState.uploadedItems$.subscribe( res => {
+      this.blobState.uploadedItems$.pipe().subscribe( res => {
         this.filesUploads = res
-        console.log(this.filesUploads);
-        
+        console.log("UP", this.filesUploads);
       })
     }
 
